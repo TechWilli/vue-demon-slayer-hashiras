@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="vue.js"></script>
+  <title>Vue Demon Slayer Hashiras</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1>{{title}}</h1>
+        <span class="arrow-top" v-if="scrollReachesTop">&#8593</span>
+      </header>
+      <main v-on:scroll="handleListScroll">
+        <div class="hashiras-list">
+          <button v-on:click="orderByAge" type="button" class="button-sort-age">ordenar por idade - {{ascendingOrder ? 'crescente' : 'decrescente'}}</button>
+          <!-- Usando o v-for para iterar em uma lista -->
+          <template v-for="(hashira, index) of hashirasList">
+            <div class="card" v-bind:key="index">
+              <div class="img-container">
+                <img v-bind:src="hashira.hashiraImgSrc" alt="hashira image" class="hashira-image">
+              </div>
+              <div>
+                <p class="hashira-name">{{hashira.name}}</p>
+                <p class="hashira-info">{{hashira.age}} anos</p>
+                <p class="hashira-info">{{hashira.emoji}} {{hashira.element}}</p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </main>
+      <footer>
+        <span class="arrow-bottom" v-if="scrollReachesBottom">&#8595</span>
+        <p>Desenvolvido por <a v-bind:href="developer.github" target="_blank">{{developer.name}}</a></p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        title: 'Demon Slayer Hashiras',
+        hashirasList: [
+          { name: 'Tomioka Giyu', element: 'Água', age: 21, emoji: '🌊', hashiraImgSrc: './images/hashira_agua.png' },
+          { name: 'Rengoku Kyojuro', element: 'Chamas', age: 20, emoji: '🔥', hashiraImgSrc: './images/hashira_chamas.png' },
+          { name: 'Kanroju Mitsuri', element: 'Amor', age: 19, emoji: '❤️', hashiraImgSrc: './images/hashira_amor.png' },
+          { name: 'Iguro Obanai', element: 'Serpente', age: 21, emoji: '🐍', hashiraImgSrc: './images/hashira_serpente.png' },
+          { name: 'Shinazugawa Sanemi', element: 'Vento', age: 21, emoji: '💨', hashiraImgSrc: './images/hashira_vento.png' },
+          { name: 'Himejima Gyomei', element: 'Pedra', age: 27, emoji: '🗿', hashiraImgSrc: './images/hashira_pedra.png' },
+          { name: 'Uzui Tengen', element: 'Som', age: 23, emoji: '🎵', hashiraImgSrc: './images/hashira_som.png' },
+          { name: 'Tokito Muichiro', element: 'Névoa', age: 14, emoji: '🌫️', hashiraImgSrc: './images/hashira_nevoa.png' },
+          { name: 'Kocho Shinobu', element: 'Inseto', age: 18, emoji: '🦋', hashiraImgSrc: './images/hashira_inseto.png' },
+        ],
+        developer: {
+          name: 'TechWilli',
+          github: 'https://github.com/TechWilli',
+        },
+        scrollReachesTop: false,
+        scrollReachesBottom: true,
+        ascendingOrder: true
+      },
+      methods: {
+        handleListScroll(event) {
+          // console.log('scrollTop', Math.ceil(event.target.scrollTop))
+          // console.log('scrollHeight - offsetHeight', event.target.scrollHeight - event.target.offsetHeight)
+
+          // quando o scrollTop for igual a 0, a posição da div está no topo
+          if (event.target.scrollTop === 0) {
+            this.scrollReachesTop = false
+            this.scrollReachesBottom = true
+          }
+          // Solução encontrada para detectar quando o scroll da div chegou ao fim
+          if (Math.ceil(event.target.scrollTop) >= event.target.scrollHeight - event.target.offsetHeight) {
+            this.scrollReachesBottom = false
+            this.scrollReachesTop = true
+          }
+        },
+        orderByAge() {
+          // forma de ordenar números
+          this.hashirasList.sort((a, b) => {
+            
+            if (this.ascendingOrder) {
+              // ordena crescente
+              return a.age - b.age
+            }
+            
+            // ordena decrescente
+            return b.age - a.age
+          })
+
+          this.ascendingOrder = !this.ascendingOrder
+        }
+      },
+    })
+
+    console.log('vm Vue:', vm)
+  </script>
+
+  <!-- imagens dos pilares retiradas da página https://metagalaxia.com.br/anime-e-manga/os-hashiras-de-demon-slayer-kimetsu-no-yaiba/
+  dou todos os créditos a ela -->
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+:root {
+  --border-color: #dddddd;
+  --background-light: #fafafa;
+  --text-color: #333333;
+  --green: #41B883;
+  --light-green: #9bffd2;
+  --red: #ff6767;
+  --light-red: #ffbbbb;
+  --blue: #7eabff;
+  --light-blue: #b9d2ff;
+  --box-shadow-color: rgb(0, 0, 0, .1);
+}
+
+/* para quem acessar do navegador no celular, diminuir a fonte do html
+para redimensionar as medidas em rem */
+@media (max-width: 425px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-color);
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-light);
+  overflow: hidden;
+}
+
+/* container que envolve o header, main e footer da página */
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+h1 {
+  padding-bottom: .75rem;
+  margin-top: 1rem;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow-top {
+  position: absolute;
+  bottom: -35px;
+  font-size: 1.3rem;
+  animation: floatingMovementTop 1500ms infinite;
+}
+
+@keyframes floatingMovementTop {
+  /* como no 0% e 100% será a mesma coisa, posso informar as props juntas dessa forma */
+  0%, 100% {
+    transform: initial;
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+.arrow-bottom {
+  position: absolute;
+  top: -35px;
+  font-size: 1.3rem;
+  animation: floatingMovementBottom 1500ms infinite;
+}
+
+@keyframes floatingMovementBottom {
+  0%, 100% {
+    transform: initial;
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+
+.hashiras-list {
+  margin: .75rem;
+}
+
+.button-sort-age {
+  margin: 0 auto;
+  padding: .5rem 2rem;
+  display: block;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: .25rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--blue);
+  cursor: pointer;
+  transition: box-shadow 200ms;
+}
+
+.button-sort-age:hover {
+  box-shadow: 0 0 0 3px var(--light-blue);
+}
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: .25rem;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  background-color: #ffffff;
+  transition: box-shadow 200ms;
+  display: flex;
+}
+
+.img-container {
+  margin-right: 1rem;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 2px 3px 5px var(--box-shadow-color);
+}
+
+.hashira-image {
+  /* combo de props para deixar a imagem responsiva, fazendo ela diminuir se necessário,
+  mas só aumentar até seu tamanho máximo original */
+  display: block; /* para tirar a margin que vem por padrão */
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--box-shadow-color);
+}
+
+.hashira-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: .25rem;
+}
+
+.hashira-info {
+  font-size: .875rem;
+  margin-bottom: 0.25rem;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  position: relative;
+}
+
+footer > p {
+  margin-bottom: 1rem;
+  padding-top: .75rem;
+}
+
+footer a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+}
