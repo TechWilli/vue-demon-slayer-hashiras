@@ -21,7 +21,7 @@
       </header>
       <main v-on:scroll="handleListScroll">
         <div class="hashiras-list">
-          <button v-on:click="orderByAge" type="button" class="button-sort-age">ordenar por idade - {{ascendingOrder ? 'crescente' : 'decrescente'}}</button>
+          <button v-on:click="orderByAge" type="button" class="button-sort-age">{{buttonLabel}}</button>
           <!-- Usando o v-for para iterar em uma lista -->
           <template v-for="(hashira, index) of hashirasList">
             <div class="card" v-bind:key="index">
@@ -49,17 +49,7 @@
       el: '#app',
       data: {
         title: 'Demon Slayer Hashiras',
-        hashirasList: [
-          { name: 'Tomioka Giyu', element: 'Água', age: 21, emoji: '🌊', hashiraImgSrc: './images/hashira_agua.png' },
-          { name: 'Rengoku Kyojuro', element: 'Chamas', age: 20, emoji: '🔥', hashiraImgSrc: './images/hashira_chamas.png' },
-          { name: 'Kanroju Mitsuri', element: 'Amor', age: 19, emoji: '❤️', hashiraImgSrc: './images/hashira_amor.png' },
-          { name: 'Iguro Obanai', element: 'Serpente', age: 21, emoji: '🐍', hashiraImgSrc: './images/hashira_serpente.png' },
-          { name: 'Shinazugawa Sanemi', element: 'Vento', age: 21, emoji: '💨', hashiraImgSrc: './images/hashira_vento.png' },
-          { name: 'Himejima Gyomei', element: 'Pedra', age: 27, emoji: '🗿', hashiraImgSrc: './images/hashira_pedra.png' },
-          { name: 'Uzui Tengen', element: 'Som', age: 23, emoji: '🎵', hashiraImgSrc: './images/hashira_som.png' },
-          { name: 'Tokito Muichiro', element: 'Névoa', age: 14, emoji: '🌫️', hashiraImgSrc: './images/hashira_nevoa.png' },
-          { name: 'Kocho Shinobu', element: 'Inseto', age: 18, emoji: '🦋', hashiraImgSrc: './images/hashira_inseto.png' },
-        ],
+        hashirasList: [],
         developer: {
           name: 'TechWilli',
           github: 'https://github.com/TechWilli',
@@ -87,19 +77,36 @@
         orderByAge() {
           // forma de ordenar números
           this.hashirasList.sort((a, b) => {
-            
+
             if (this.ascendingOrder) {
               // ordena crescente
               return a.age - b.age
             }
-            
+
             // ordena decrescente
             return b.age - a.age
           })
 
           this.ascendingOrder = !this.ascendingOrder
+        },
+        fetchHashirasData() {
+          // usando IIFE (Immediately Invoked Function Expression)
+          ; (async () => {
+            const request = await fetch('./data/hashiras-data.json')
+            const response = await request.json()
+            this.hashirasList = response.data;
+          })()
+        },
+      },
+      computed: {
+        buttonLabel() {
+          return `ordenar por idade - ${this.ascendingOrder ? 'crescente' : 'decrescente'}`
         }
       },
+      mounted() {
+
+      this.fetchHashirasData()
+    }
     })
 
     console.log('vm Vue:', vm)

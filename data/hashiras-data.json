@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "name": "Tomioka Giyu",
+      "element": "Água",
+      "age": 21,
+      "emoji": "🌊",
+      "hashiraImgSrc": "./images/hashira_agua.png"
+    },
+    {
+      "name": "Rengoku Kyojuro",
+      "element": "Chamas",
+      "age": 20,
+      "emoji": "🔥",
+      "hashiraImgSrc": "./images/hashira_chamas.png"
+    },
+    {
+      "name": "Kanroju Mitsuri",
+      "element": "Amor",
+      "age": 19,
+      "emoji": "❤️",
+      "hashiraImgSrc": "./images/hashira_amor.png"
+    },
+    {
+      "name": "Iguro Obanai",
+      "element": "Serpente",
+      "age": 21,
+      "emoji": "🐍",
+      "hashiraImgSrc": "./images/hashira_serpente.png"
+    },
+    {
+      "name": "Shinazugawa Sanemi",
+      "element": "Vento",
+      "age": 21,
+      "emoji": "💨",
+      "hashiraImgSrc": "./images/hashira_vento.png"
+    },
+    {
+      "name": "Himejima Gyomei",
+      "element": "Pedra",
+      "age": 27,
+      "emoji": "🗿",
+      "hashiraImgSrc": "./images/hashira_pedra.png"
+    },
+    {
+      "name": "Uzui Tengen",
+      "element": "Som",
+      "age": 23,
+      "emoji": "🎵",
+      "hashiraImgSrc": "./images/hashira_som.png"
+    },
+    {
+      "name": "Tokito Muichiro",
+      "element": "Névoa",
+      "age": 14,
+      "emoji": "🌫️",
+      "hashiraImgSrc": "./images/hashira_nevoa.png"
+    },
+    {
+      "name": "Kocho Shinobu",
+      "element": "Inseto",
+      "age": 18,
+      "emoji": "🦋",
+      "hashiraImgSrc": "./images/hashira_inseto.png"
+    }
+  ]
+}
